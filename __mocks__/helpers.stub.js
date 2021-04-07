@@ -2,7 +2,7 @@ const path = require('path');
 
 const pathToStory = path.join(__dirname, './story-content.stub.jsx');
 
-const componentNamePattern = /(?<=title: )[a-z/]+/gi;
+const componentNamePattern = /(?<=title: ')[a-z/]+/gi;
 
 const storyNamePattern = /[a-z]+(?= = Template.bind\()/gi;
 

@@ -2,13 +2,15 @@ const fs = require('fs');
 const path = require('path');
 
 const getComponentName = (fileContent, pattern) => {
-  const match = fileContent.match(pattern);
+  const matches = fileContent.match(pattern);
 
-  if (match === null) {
+  if (matches === null) {
     throw new Error("Couldn't find component name, check componentNamePattern");
   }
 
-  return match[0];
+  const match = matches[0];
+
+  return match.toLowerCase().replace(/\//, '-');
 };
 
 const getComponentStoriesNames = (fileContent, pattern) => {
@@ -18,7 +20,7 @@ const getComponentStoriesNames = (fileContent, pattern) => {
     throw new Error("Couldn't find story name, check storyNamePattern");
   }
 
-  return match.map((storyName) => storyName.replace(/\s/gi, '-'));
+  return match.map((storyName) => storyName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase());
 };
 
 const getTestDirectoryPath = (pathToStory, relatedPathToTestDirectory) =>

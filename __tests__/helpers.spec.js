@@ -33,7 +33,7 @@ describe('helpers', () => {
     });
 
     test('should throw an error if no match is found', () => {
-      expect(() => getComponentName(fileContent, /(?<=title, )[a-z]+/gi)).toThrowError();
+      expect(() => getComponentName(fileContent, /(?<=title: ")[a-z]+/gi)).toThrowError();
     });
   });
 
